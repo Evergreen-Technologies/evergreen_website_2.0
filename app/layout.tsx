@@ -2,6 +2,7 @@ import type React from "react";
 import "@/app/globals.css";
 import { Inter, Poppins } from "next/font/google";
 import { Toaster } from "@/components/ui/toaster";
+import ChatbotProvider from "@/app/chatbot-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 const poppins = Poppins({
@@ -26,12 +27,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.className} ${poppins.variable}`}>
-      <body className="font-poppins">
+      <body className="font-poppins" suppressHydrationWarning={true}>
         {children}
         <Toaster />
+        <ChatbotProvider />
       </body>
     </html>
   );
 }
-
-import "./globals.css";

@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import emailjs from "@emailjs/browser";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowRight,
   ArrowLeft,
@@ -896,13 +897,17 @@ export default function Home() {
                   </nav>
                   <div className="mt-auto pt-8">
                     <Button
-                      className="w-full bg-accent hover:bg-accent/80 text-primary font-medium py-6 text-lg transition-colors rounded-md"
+                      className="w-full bg-accent text-white font-medium py-6 text-lg transition-all duration-300 rounded-full shadow-md hover:shadow-lg border-2 border-transparent hover:border-white relative overflow-hidden group"
                       onClick={() => {
                         scrollToSection(contactRef);
                         setIsOpen(false);
                       }}
                     >
-                      Get in Touch
+                      <span className="relative z-10 text-white group-hover:text-white">
+                        Get in Touch
+                      </span>
+                      <span className="absolute inset-0 bg-accent group-hover:opacity-0 transition-opacity duration-300"></span>
+                      <span className="absolute inset-0 bg-gradient-to-r from-teal-400 via-emerald-500 to-teal-600 opacity-0 group-hover:opacity-100 transition-all duration-500 scale-x-0 group-hover:scale-x-100 origin-left"></span>
                     </Button>
                   </div>
                 </div>
@@ -911,10 +916,14 @@ export default function Home() {
           </div>
 
           <Button
-            className="hidden md:flex bg-accent hover:bg-accent/80 text-white font-medium px-6 py-2.5 text-base transition-colors rounded-md"
+            className="hidden md:flex bg-accent text-white font-medium px-6 py-2.5 text-base transition-all duration-300 rounded-full shadow-md hover:shadow-lg border-2 border-transparent hover:border-white relative overflow-hidden group"
             onClick={() => scrollToSection(contactRef)}
           >
-            Get in Touch
+            <span className="relative z-10 text-white group-hover:text-white">
+              Get in Touch
+            </span>
+            <span className="absolute inset-0 bg-accent group-hover:opacity-0 transition-opacity duration-300"></span>
+            <span className="absolute inset-0 bg-gradient-to-r from-teal-400 via-emerald-500 to-teal-600 opacity-0 group-hover:opacity-100 transition-all duration-500 scale-x-0 group-hover:scale-x-100 origin-left"></span>
           </Button>
         </div>
       </header>
@@ -925,36 +934,185 @@ export default function Home() {
           ref={homeRef}
           className="relative bg-primary min-h-screen flex items-center"
         >
-          <div className="absolute inset-0 bg-[url('/hero-bg.png')] bg-cover bg-center " />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(9,184,128,0.2),transparent_60%)]" />
-          <div className="container relative mx-auto px-4 py-20 md:py-32 text-center">
+          <motion.div
+            initial={{ scale: 1.1, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 1.2 }}
+            className="absolute inset-0 bg-[url('/hero-bg.png')] bg-cover bg-center"
+          />
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.5, delay: 0.3 }}
+            className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(9,184,128,0.2),transparent_60%)]"
+          />
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            className="container relative mx-auto px-4 py-20 md:py-32 text-center"
+          >
             <div className="mx-auto max-w-4xl">
-              <h1 className="mb-12 md:mb-16 text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white">
-                We provide best tech solutions for{" "}
-                <span className="text-accent">your</span> business
-              </h1>
-              <p className="mb-[72px] md:mb-20 text-base md:text-lg lg:text-xl text-white/80 max-w-2xl mx-auto">
+              <motion.h1
+                initial={{ y: 50, opacity: 0 }}
+                animate={{
+                  y: 0,
+                  opacity: 1,
+                }}
+                transition={{
+                  duration: 0.8,
+                  delay: 0.2,
+                  ease: [0.17, 0.67, 0.83, 0.67],
+                }}
+                className="mb-12 md:mb-16 text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white"
+              >
+                <motion.span
+                  animate={{ y: [0, -8, 0] }}
+                  transition={{
+                    duration: 6,
+                    repeat: Infinity,
+                    repeatType: "reverse",
+                    ease: "easeInOut",
+                  }}
+                  className="inline-block"
+                >
+                  Driving Your Success with Tailored Digital Solutions
+                </motion.span>
+              </motion.h1>
+              <motion.p
+                initial={{ y: 50, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{
+                  duration: 0.8,
+                  delay: 0.4,
+                  ease: [0.17, 0.67, 0.83, 0.67],
+                }}
+                className="mb-[72px] md:mb-20 text-base md:text-lg lg:text-xl text-white/80 max-w-2xl mx-auto"
+              >
                 At Evergreen Technologies, we don't just deliver services but
                 partner with you to create digital tools that work.
-              </p>
-              <div className="flex flex-col sm:flex-row justify-center gap-4">
-                <Button
-                  size="lg"
-                  className="bg-accent hover:bg-accent/80 text-white font-medium px-8 py-3 text-base md:text-lg rounded-md transition-all duration-300 shadow-lg hover:shadow-accent/30 hover:-translate-y-1 max-w-[200px] mx-auto sm:max-w-none sm:mx-0"
-                  onClick={() => scrollToSection(contactRef)}
+              </motion.p>
+              <motion.div
+                initial={{ y: 50, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{
+                  duration: 0.8,
+                  delay: 0.6,
+                  ease: [0.17, 0.67, 0.83, 0.67],
+                }}
+                className="flex flex-col sm:flex-row justify-center gap-4"
+              >
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  Work With Us
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="bg-white border-0 text-primary hover:bg-white/90 px-8 py-3 text-base md:text-lg rounded-md transition-all duration-300 shadow-lg hover:shadow-white/30 hover:-translate-y-1 group hidden sm:inline-flex"
-                  onClick={() => scrollToSection(servicesRef)}
+                  <Button
+                    size="lg"
+                    className="bg-accent text-white font-medium px-8 py-3 text-base md:text-lg rounded-full transition-all duration-300 shadow-lg hover:shadow-xl border-2 border-transparent hover:border-white relative overflow-hidden group"
+                    onClick={() => scrollToSection(contactRef)}
+                  >
+                    <span className="relative z-10 text-white group-hover:text-white">
+                      Work With Us
+                    </span>
+                    <span className="absolute inset-0 bg-accent group-hover:opacity-0 transition-opacity duration-300"></span>
+                    <span className="absolute inset-0 bg-gradient-to-r from-teal-400 via-emerald-500 to-teal-600 opacity-0 group-hover:opacity-100 transition-all duration-500 scale-x-0 group-hover:scale-x-100 origin-left"></span>
+                  </Button>
+                </motion.div>
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  View Services
-                  {/* <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" /> */}
-                </Button>
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="bg-transparent text-white px-8 py-3 text-base md:text-lg rounded-full transition-all duration-300 shadow-lg border-2 border-white/50 hover:border-white group hidden sm:inline-flex relative overflow-hidden"
+                    onClick={() => scrollToSection(servicesRef)}
+                  >
+                    <span className="relative z-10 flex items-center text-white group-hover:text-white">
+                      View Services
+                      <motion.span
+                        initial={{ x: 0 }}
+                        animate={{ x: [0, 5, 0] }}
+                        transition={{
+                          duration: 1.5,
+                          repeat: Infinity,
+                          repeatType: "loop",
+                        }}
+                        className="ml-2"
+                      >
+                        <ArrowRight className="h-4 w-4" />
+                      </motion.span>
+                    </span>
+                    <span className="absolute inset-0 bg-gradient-to-r from-emerald-500 via-teal-400 to-emerald-600 opacity-0 group-hover:opacity-100 transition-all duration-500 scale-x-0 group-hover:scale-x-100 origin-left"></span>
+                  </Button>
+                </motion.div>
+              </motion.div>
+            </div>
+
+            {/* Scroll Indicator */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.2, duration: 0.8 }}
+              className="absolute bottom-8 left-1/2 transform -translate-x-1/2 hidden md:block"
+            >
+              <motion.div
+                animate={{ y: [0, 10, 0] }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  repeatType: "loop",
+                }}
+                className="flex flex-col items-center"
+              >
+                <span className="text-white/70 text-sm mb-2">Scroll Down</span>
+                <div className="w-6 h-9 border-2 border-white/30 rounded-full flex justify-center pt-1">
+                  <motion.div
+                    animate={{ y: [0, 12, 0] }}
+                    transition={{
+                      duration: 1.5,
+                      repeat: Infinity,
+                      repeatType: "loop",
+                    }}
+                    className="w-1.5 h-1.5 bg-white rounded-full"
+                  />
+                </div>
+              </motion.div>
+            </motion.div>
+          </motion.div>
+        </section>
+
+        {/* Partners Section */}
+        <section ref={testimonialsRef} className="py-16 md:py-24 bg-gray-50">
+          <div className="container px-4">
+            <div className="text-center mb-12 md:mb-16">
+              <div className="inline-block px-3 py-1 bg-accent/10 text-accent rounded-full text-sm font-medium mb-4">
+                OUR PARTNERS
               </div>
+              <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight text-primary">
+                Trusted by leading companies
+              </h2>
+              <div className="w-20 h-1 bg-accent mx-auto mt-6"></div>
+            </div>
+
+            <div className="relative">
+              <Marquee
+                className="py-8 [--duration:40s] [--gap:2rem] marquee-mobile"
+                pauseOnHover={true}
+              >
+                {[1, 2, 3, 4, 5, 6].map((index) => (
+                  <div key={index} className="mx-8">
+                    <div className="relative w-[180px] h-[80px] transition-all duration-300">
+                      <Image
+                        src={`/partners/partner${index}.png`}
+                        alt={`Partner ${index}`}
+                        fill
+                        className="object-contain"
+                      />
+                    </div>
+                  </div>
+                ))}
+              </Marquee>
             </div>
           </div>
         </section>
@@ -1000,7 +1158,7 @@ export default function Home() {
 
               {/* Web Development */}
               <ServiceCard
-                icon={<Globe className="h-6 w-6" />}
+                icon={<Globe className="h-f6 w-6" />}
                 title="Web Development"
                 description="Crafting scalable websites with seamless user experiences and modern technologies."
               />
@@ -1021,7 +1179,32 @@ export default function Home() {
             </div>
           </div>
         </section>
+        {/* Projects Section */}
+        <section ref={projectsRef} className="py-16 md:py-24 bg-white">
+          <div className="container px-4">
+            <div className="text-center mb-12 md:mb-16">
+              <div className="inline-block px-3 py-1 bg-accent/10 text-accent rounded-full text-sm font-medium mb-4">
+                OUR PROJECTS
+              </div>
+              <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight text-primary">
+                Projects we've built
+              </h2>
+              <div className="w-20 h-1 bg-accent mx-auto mt-6"></div>
+            </div>
 
+            <div className="grid gap-6 md:gap-8 sm:grid-cols-2 lg:grid-cols-3">
+              {projects.map((project) => (
+                <ProjectCard
+                  key={project.id}
+                  title={project.title}
+                  category={project.category}
+                  image={project.image}
+                  onClick={() => handleProjectClick(project)}
+                />
+              ))}
+            </div>
+          </div>
+        </section>
         {/* Process Section */}
         <section ref={processRef} className="py-16 md:py-28 bg-gray-50">
           <div className="container px-4">
@@ -1115,68 +1298,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Projects Section */}
-        <section ref={projectsRef} className="py-16 md:py-24 bg-white">
-          <div className="container px-4">
-            <div className="text-center mb-12 md:mb-16">
-              <div className="inline-block px-3 py-1 bg-accent/10 text-accent rounded-full text-sm font-medium mb-4">
-                OUR PROJECTS
-              </div>
-              <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight text-primary">
-                Sustainable solutions we've built
-              </h2>
-              <div className="w-20 h-1 bg-accent mx-auto mt-6"></div>
-            </div>
-
-            <div className="grid gap-6 md:gap-8 sm:grid-cols-2 lg:grid-cols-3">
-              {projects.map((project) => (
-                <ProjectCard
-                  key={project.id}
-                  title={project.title}
-                  category={project.category}
-                  image={project.image}
-                  onClick={() => handleProjectClick(project)}
-                />
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Partners Section */}
-        <section ref={testimonialsRef} className="py-16 md:py-24 bg-gray-50">
-          <div className="container px-4">
-            <div className="text-center mb-12 md:mb-16">
-              <div className="inline-block px-3 py-1 bg-accent/10 text-accent rounded-full text-sm font-medium mb-4">
-                OUR PARTNERS
-              </div>
-              <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight text-primary">
-                Trusted by leading companies
-              </h2>
-              <div className="w-20 h-1 bg-accent mx-auto mt-6"></div>
-            </div>
-
-            <div className="relative">
-              <Marquee
-                className="py-8 [--duration:40s] [--gap:2rem]"
-                pauseOnHover={true}
-              >
-                {[1, 2, 3, 4, 5, 6].map((index) => (
-                  <div key={index} className="mx-8">
-                    <div className="relative w-[180px] h-[80px] grayscale hover:grayscale-0 transition-all duration-300">
-                      <Image
-                        src={`/partners/partner${index}.png`}
-                        alt={`Partner ${index}`}
-                        fill
-                        className="object-contain"
-                      />
-                    </div>
-                  </div>
-                ))}
-              </Marquee>
-            </div>
-          </div>
-        </section>
-
         {/* Team Section with Marquee */}
         <section
           ref={teamRef}
@@ -1195,7 +1316,7 @@ export default function Home() {
 
             <div className="relative">
               <Marquee
-                className="py-4 [--duration:60s] [--gap:2rem]"
+                className="py-4 [--duration:60s] [--gap:2rem] marquee-mobile2"
                 pauseOnHover={true}
               >
                 {teamMembers.map((member) => (
@@ -1419,16 +1540,20 @@ export default function Home() {
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-accent hover:bg-accent/80 text-white font-medium py-3 text-base transition-colors h-12 rounded-md disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full bg-accent text-white font-medium py-3 text-base transition-all duration-300 h-12 rounded-full shadow-md hover:shadow-lg border-2 border-transparent hover:border-white disabled:opacity-50 disabled:cursor-not-allowed relative overflow-hidden group"
                   >
-                    {isSubmitting ? (
-                      <>
-                        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                        Sending...
-                      </>
-                    ) : (
-                      "Send Message"
-                    )}
+                    <span className="relative z-10 flex items-center justify-center text-white group-hover:text-white">
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                          Sending...
+                        </>
+                      ) : (
+                        "Send Message"
+                      )}
+                    </span>
+                    <span className="absolute inset-0 bg-accent group-hover:opacity-0 transition-opacity duration-300"></span>
+                    <span className="absolute inset-0 bg-gradient-to-r from-teal-400 via-emerald-500 to-teal-600 opacity-0 group-hover:opacity-100 transition-all duration-500 scale-x-0 group-hover:scale-x-100 origin-left"></span>
                   </Button>
                 </form>
               </div>
@@ -1711,10 +1836,11 @@ export default function Home() {
       {showScrollTop && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-50 p-2 rounded-full bg-accent text-primary hover:bg-accent/80 transition-colors shadow-lg"
+          data-scroll-top-button
+          className="fixed bottom-8 right-8 z-50 p-3 rounded-full bg-accent text-white shadow-lg hover:bg-accent/80"
         >
           <svg
-            className="w-6 h-6"
+            className="w-5 h-5"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
